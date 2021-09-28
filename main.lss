@@ -1,0 +1,1246 @@
+
+main.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000005e6  00000000  00000000  00000074  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .bss          00000002  00800100  00800100  0000065a  2**0
+                  ALLOC
+  2 .debug_aranges 00000020  00000000  00000000  0000065a  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  3 .debug_pubnames 000000bd  00000000  00000000  0000067a  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  4 .debug_info   00000a35  00000000  00000000  00000737  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_abbrev 000001f3  00000000  00000000  0000116c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_line   000007f1  00000000  00000000  0000135f  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_frame  000000e0  00000000  00000000  00001b50  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_str    000001a4  00000000  00000000  00001c30  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_loc    000004a1  00000000  00000000  00001dd4  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_ranges 00000048  00000000  00000000  00002275  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 34 00 	jmp	0x68	; 0x68 <__ctors_end>
+   4:	0c 94 48 00 	jmp	0x90	; 0x90 <__vector_1>
+   8:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+   c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  10:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  14:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  18:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  1c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  20:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  24:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  28:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  2c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  30:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  34:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  38:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  3c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  40:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  44:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  48:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  4c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  50:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  54:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  58:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  5c:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  60:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+  64:	0c 94 46 00 	jmp	0x8c	; 0x8c <__bad_interrupt>
+
+00000068 <__ctors_end>:
+  68:	11 24       	eor	r1, r1
+  6a:	1f be       	out	0x3f, r1	; 63
+  6c:	cf ef       	ldi	r28, 0xFF	; 255
+  6e:	d8 e0       	ldi	r29, 0x08	; 8
+  70:	de bf       	out	0x3e, r29	; 62
+  72:	cd bf       	out	0x3d, r28	; 61
+
+00000074 <__do_clear_bss>:
+  74:	11 e0       	ldi	r17, 0x01	; 1
+  76:	a0 e0       	ldi	r26, 0x00	; 0
+  78:	b1 e0       	ldi	r27, 0x01	; 1
+  7a:	01 c0       	rjmp	.+2      	; 0x7e <.do_clear_bss_start>
+
+0000007c <.do_clear_bss_loop>:
+  7c:	1d 92       	st	X+, r1
+
+0000007e <.do_clear_bss_start>:
+  7e:	a2 30       	cpi	r26, 0x02	; 2
+  80:	b1 07       	cpc	r27, r17
+  82:	e1 f7       	brne	.-8      	; 0x7c <.do_clear_bss_loop>
+  84:	0e 94 89 01 	call	0x312	; 0x312 <main>
+  88:	0c 94 f1 02 	jmp	0x5e2	; 0x5e2 <_exit>
+
+0000008c <__bad_interrupt>:
+  8c:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000090 <__vector_1>:
+void avgCompare(unsigned int rTotal,unsigned int bTotal, unsigned int gTotal);
+
+static volatile unsigned short count;
+
+ISR( INT0_vect )
+{
+  90:	1f 92       	push	r1
+  92:	0f 92       	push	r0
+  94:	0f b6       	in	r0, 0x3f	; 63
+  96:	0f 92       	push	r0
+  98:	11 24       	eor	r1, r1
+  9a:	8f 93       	push	r24
+  9c:	9f 93       	push	r25
+	
+	if(PIND & (1 << 2)) {
+  9e:	4a 9b       	sbis	0x09, 2	; 9
+  a0:	03 c0       	rjmp	.+6      	; 0xa8 <__vector_1+0x18>
+		TCNT2 = 0;									// Clear Timer counter 
+  a2:	10 92 b2 00 	sts	0x00B2, r1
+  a6:	07 c0       	rjmp	.+14     	; 0xb6 <__vector_1+0x26>
+	}
+	else  {
+		count = TCNT2;
+  a8:	80 91 b2 00 	lds	r24, 0x00B2
+  ac:	90 e0       	ldi	r25, 0x00	; 0
+  ae:	90 93 01 01 	sts	0x0101, r25
+  b2:	80 93 00 01 	sts	0x0100, r24
+	}
+}
+  b6:	9f 91       	pop	r25
+  b8:	8f 91       	pop	r24
+  ba:	0f 90       	pop	r0
+  bc:	0f be       	out	0x3f, r0	; 63
+  be:	0f 90       	pop	r0
+  c0:	1f 90       	pop	r1
+  c2:	18 95       	reti
+
+000000c4 <init>:
+		
+	move(0,0,0,0);  // stop
+}
+void init(void){ // initialization
+
+	DDRD |= 1<<PD5|1<<PD6;
+  c4:	8a b1       	in	r24, 0x0a	; 10
+  c6:	80 66       	ori	r24, 0x60	; 96
+  c8:	8a b9       	out	0x0a, r24	; 10
+	DDRB |= 1<<PB1|1<<PB2|1<<PB3|1<<PB4|1<<PB5;
+  ca:	84 b1       	in	r24, 0x04	; 4
+  cc:	8e 63       	ori	r24, 0x3E	; 62
+  ce:	84 b9       	out	0x04, r24	; 4
+	
+	DDRD |= 0<<PD2|1<<PD3; 
+  d0:	53 9a       	sbi	0x0a, 3	; 10
+}
+  d2:	08 95       	ret
+
+000000d4 <pwmInit>:
+
+void pwmInit(void){ // PWM initialization
+
+	TCCR0A = (1<< COM0A1) | (1<<COM0B1) | (1<<WGM01) | (1<<WGM00); // timer0 
+  d4:	83 ea       	ldi	r24, 0xA3	; 163
+  d6:	84 bd       	out	0x24, r24	; 36
+	TCCR0B = (1<<CS00); //no prescaler
+  d8:	91 e0       	ldi	r25, 0x01	; 1
+  da:	95 bd       	out	0x25, r25	; 37
+		
+	TCCR1A = (1<< COM1A1) | (1<<COM1B1) | (1<<WGM12) | (1<<WGM10); // timer1
+  dc:	89 ea       	ldi	r24, 0xA9	; 169
+  de:	80 93 80 00 	sts	0x0080, r24
+	TCCR1B = (1<<CS10); //no prescaler
+  e2:	90 93 81 00 	sts	0x0081, r25
+
+}
+  e6:	08 95       	ret
+
+000000e8 <timerInit>:
+void timerInit(void){
+	
+	EIMSK |= (1<<INT0); 							//enable external interrupt
+  e8:	e8 9a       	sbi	0x1d, 0	; 29
+	EICRA |= (1<<ISC00); 							// Any logical change on INT0 generates an interrupt request.
+  ea:	e9 e6       	ldi	r30, 0x69	; 105
+  ec:	f0 e0       	ldi	r31, 0x00	; 0
+  ee:	80 81       	ld	r24, Z
+  f0:	81 60       	ori	r24, 0x01	; 1
+  f2:	80 83       	st	Z, r24
+													//Config and enable Timer1
+	TCCR2B |= 1<<CS20|1<<CS21|1<<CS22; 
+  f4:	e1 eb       	ldi	r30, 0xB1	; 177
+  f6:	f0 e0       	ldi	r31, 0x00	; 0
+  f8:	80 81       	ld	r24, Z
+  fa:	87 60       	ori	r24, 0x07	; 7
+  fc:	80 83       	st	Z, r24
+	
+	sei();
+  fe:	78 94       	sei
+
+}
+ 100:	08 95       	ret
+
+00000102 <usartInit>:
+void usartInit(void){ 								// USART initialization
+
+	UCSR0B = (1<<TXEN0) | (1<<RXEN0); 				// configure transmitter and reciever
+ 102:	88 e1       	ldi	r24, 0x18	; 24
+ 104:	80 93 c1 00 	sts	0x00C1, r24
+	UCSR0C |= (1<<UCSZ01)|(1<<UCSZ00);	 			// Select UCSRC0, Select transmit/receive msg bit-size
+ 108:	e2 ec       	ldi	r30, 0xC2	; 194
+ 10a:	f0 e0       	ldi	r31, 0x00	; 0
+ 10c:	80 81       	ld	r24, Z
+ 10e:	86 60       	ori	r24, 0x06	; 6
+ 110:	80 83       	st	Z, r24
+	
+	UBRR0L = 103; 									//set baudrate
+ 112:	87 e6       	ldi	r24, 0x67	; 103
+ 114:	80 93 c4 00 	sts	0x00C4, r24
+
+}
+ 118:	08 95       	ret
+
+0000011a <adcInit>:
+
+void adcInit(void){										// Adc initialization
+
+    ADMUX = (1<<REFS0)|(1<<MUX0);					// use AVCC and and A as input to adc 
+ 11a:	81 e4       	ldi	r24, 0x41	; 65
+ 11c:	80 93 7c 00 	sts	0x007C, r24
+	ADCSRA = (1<<ADEN)|(1<<ADPS1)|(1<<ADPS0); 	// ADC presclaer 128
+ 120:	83 e8       	ldi	r24, 0x83	; 131
+ 122:	80 93 7a 00 	sts	0x007A, r24
+
+}
+ 126:	08 95       	ret
+
+00000128 <move>:
+	
+void move(unsigned int a,unsigned int b,unsigned int c,unsigned int d){
+
+	OCR0A = a;
+ 128:	87 bd       	out	0x27, r24	; 39
+	OCR0B = b;
+ 12a:	68 bd       	out	0x28, r22	; 40
+	OCR1A = c;
+ 12c:	50 93 89 00 	sts	0x0089, r21
+ 130:	40 93 88 00 	sts	0x0088, r20
+	OCR1B = d;
+ 134:	30 93 8b 00 	sts	0x008B, r19
+ 138:	20 93 8a 00 	sts	0x008A, r18
+	//_delay_ms(1000);
+
+}
+ 13c:	08 95       	ret
+
+0000013e <serialSend>:
+
+void serialSend(unsigned char character){			// print in serial monitor
+ 13e:	98 2f       	mov	r25, r24
+
+	while(!(UCSR0A&(1<<UDRE0)));					// Wait until UDR empty
+ 140:	80 91 c0 00 	lds	r24, 0x00C0
+ 144:	85 ff       	sbrs	r24, 5
+ 146:	fc cf       	rjmp	.-8      	; 0x140 <serialSend+0x2>
+	
+		UDR0 = character; 							// Load message byte to UDR register to be sent
+ 148:	90 93 c6 00 	sts	0x00C6, r25
+	while(!(UCSR0A&(1<<TXC0))); 					// Wait until msg sent
+ 14c:	80 91 c0 00 	lds	r24, 0x00C0
+ 150:	86 ff       	sbrs	r24, 6
+ 152:	fc cf       	rjmp	.-8      	; 0x14c <serialSend+0xe>
+
+}
+ 154:	08 95       	ret
+
+00000156 <detectObstacle>:
+
+void detectObstacle(void){
+	
+	PORTD |=  (1 << PD3);
+ 156:	5b 9a       	sbi	0x0b, 3	; 11
+    can be achieved.
+*/
+void
+_delay_loop_1(uint8_t __count)
+{
+	__asm__ volatile (
+ 158:	80 e5       	ldi	r24, 0x50	; 80
+ 15a:	8a 95       	dec	r24
+ 15c:	f1 f7       	brne	.-4      	; 0x15a <detectObstacle+0x4>
+	_delay_us( 15 );							// transmit at least 10 us trigger pulse to the HC-SR04 Trig Pin.
+	PORTD &= ~(1 << PD3);
+ 15e:	5b 98       	cbi	0x0b, 3	; 11
+	
+	if (count>0 && count<15)
+ 160:	80 91 00 01 	lds	r24, 0x0100
+ 164:	90 91 01 01 	lds	r25, 0x0101
+ 168:	89 2b       	or	r24, r25
+ 16a:	41 f0       	breq	.+16     	; 0x17c <detectObstacle+0x26>
+ 16c:	80 91 00 01 	lds	r24, 0x0100
+ 170:	90 91 01 01 	lds	r25, 0x0101
+ 174:	0f 97       	sbiw	r24, 0x0f	; 15
+ 176:	10 f4       	brcc	.+4      	; 0x17c <detectObstacle+0x26>
+		serialSend('1');
+ 178:	81 e3       	ldi	r24, 0x31	; 49
+ 17a:	01 c0       	rjmp	.+2      	; 0x17e <detectObstacle+0x28>
+	else
+		serialSend('0');
+ 17c:	80 e3       	ldi	r24, 0x30	; 48
+ 17e:	0e 94 9f 00 	call	0x13e	; 0x13e <serialSend>
+ 182:	8c ed       	ldi	r24, 0xDC	; 220
+ 184:	95 e0       	ldi	r25, 0x05	; 5
+    milliseconds can be achieved.
+ */
+void
+_delay_loop_2(uint16_t __count)
+{
+	__asm__ volatile (
+ 186:	20 e9       	ldi	r18, 0x90	; 144
+ 188:	31 e0       	ldi	r19, 0x01	; 1
+ 18a:	f9 01       	movw	r30, r18
+ 18c:	31 97       	sbiw	r30, 0x01	; 1
+ 18e:	f1 f7       	brne	.-4      	; 0x18c <detectObstacle+0x36>
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+		{
+			// wait 1/10 ms
+			_delay_loop_2(((F_CPU) / 4e3) / 10);
+			__ticks --;
+ 190:	01 97       	sbiw	r24, 0x01	; 1
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+ 192:	d9 f7       	brne	.-10     	; 0x18a <detectObstacle+0x34>
+		
+	_delay_ms(150);
+	
+}
+ 194:	08 95       	ret
+
+00000196 <adcRead>:
+	
+}
+
+unsigned int adcRead(void){								// read ADC value
+
+	ADCSRA |= (1<<ADSC);							// statrt conversion
+ 196:	80 91 7a 00 	lds	r24, 0x007A
+ 19a:	80 64       	ori	r24, 0x40	; 64
+ 19c:	80 93 7a 00 	sts	0x007A, r24
+	while(ADCSRA & (1<<ADSC));						// wait while convertion finishes
+ 1a0:	80 91 7a 00 	lds	r24, 0x007A
+ 1a4:	86 fd       	sbrc	r24, 6
+ 1a6:	fc cf       	rjmp	.-8      	; 0x1a0 <adcRead+0xa>
+	return ADC;
+ 1a8:	20 91 78 00 	lds	r18, 0x0078
+ 1ac:	30 91 79 00 	lds	r19, 0x0079
+}
+ 1b0:	c9 01       	movw	r24, r18
+ 1b2:	08 95       	ret
+
+000001b4 <avgCompare>:
+
+void avgCompare(unsigned int rTotal,unsigned int bTotal, unsigned int gTotal){
+ 1b4:	ef 92       	push	r14
+ 1b6:	ff 92       	push	r15
+ 1b8:	0f 93       	push	r16
+ 1ba:	1f 93       	push	r17
+ 1bc:	cf 93       	push	r28
+ 1be:	df 93       	push	r29
+ 1c0:	9b 01       	movw	r18, r22
+ 1c2:	fa 01       	movw	r30, r20
+	
+	unsigned int rTreshold = 500;						// treshold values
+	unsigned int bTreshold = 600;
+	unsigned int gTreshold = 600;
+	
+	rAvg = rTotal/10;								// calculate average
+ 1c4:	6a e0       	ldi	r22, 0x0A	; 10
+ 1c6:	70 e0       	ldi	r23, 0x00	; 0
+ 1c8:	0e 94 dd 02 	call	0x5ba	; 0x5ba <__udivmodhi4>
+ 1cc:	7b 01       	movw	r14, r22
+	bAvg = bTotal/10;
+ 1ce:	c9 01       	movw	r24, r18
+ 1d0:	6a e0       	ldi	r22, 0x0A	; 10
+ 1d2:	70 e0       	ldi	r23, 0x00	; 0
+ 1d4:	0e 94 dd 02 	call	0x5ba	; 0x5ba <__udivmodhi4>
+ 1d8:	8b 01       	movw	r16, r22
+	gAvg = gTotal/10;
+ 1da:	cf 01       	movw	r24, r30
+ 1dc:	6a e0       	ldi	r22, 0x0A	; 10
+ 1de:	70 e0       	ldi	r23, 0x00	; 0
+ 1e0:	0e 94 dd 02 	call	0x5ba	; 0x5ba <__udivmodhi4>
+ 1e4:	eb 01       	movw	r28, r22
+	
+	if(rAvg>rTreshold && bAvg<bTreshold && gAvg<gTreshold)		// red
+ 1e6:	85 ef       	ldi	r24, 0xF5	; 245
+ 1e8:	e8 16       	cp	r14, r24
+ 1ea:	81 e0       	ldi	r24, 0x01	; 1
+ 1ec:	f8 06       	cpc	r15, r24
+ 1ee:	48 f0       	brcs	.+18     	; 0x202 <avgCompare+0x4e>
+ 1f0:	08 55       	subi	r16, 0x58	; 88
+ 1f2:	12 40       	sbci	r17, 0x02	; 2
+ 1f4:	f8 f4       	brcc	.+62     	; 0x234 <avgCompare+0x80>
+ 1f6:	82 e0       	ldi	r24, 0x02	; 2
+ 1f8:	68 35       	cpi	r22, 0x58	; 88
+ 1fa:	78 07       	cpc	r23, r24
+ 1fc:	d8 f4       	brcc	.+54     	; 0x234 <avgCompare+0x80>
+		serialSend('5');
+ 1fe:	85 e3       	ldi	r24, 0x35	; 53
+ 200:	17 c0       	rjmp	.+46     	; 0x230 <avgCompare+0x7c>
+	if(rAvg<rTreshold && bAvg<bTreshold && gAvg>gTreshold)			// green
+ 202:	84 ef       	ldi	r24, 0xF4	; 244
+ 204:	e8 16       	cp	r14, r24
+ 206:	81 e0       	ldi	r24, 0x01	; 1
+ 208:	f8 06       	cpc	r15, r24
+ 20a:	a1 f0       	breq	.+40     	; 0x234 <avgCompare+0x80>
+ 20c:	82 e0       	ldi	r24, 0x02	; 2
+ 20e:	08 35       	cpi	r16, 0x58	; 88
+ 210:	18 07       	cpc	r17, r24
+ 212:	38 f4       	brcc	.+14     	; 0x222 <avgCompare+0x6e>
+ 214:	82 e0       	ldi	r24, 0x02	; 2
+ 216:	69 35       	cpi	r22, 0x59	; 89
+ 218:	78 07       	cpc	r23, r24
+ 21a:	18 f0       	brcs	.+6      	; 0x222 <avgCompare+0x6e>
+		serialSend('6');
+ 21c:	86 e3       	ldi	r24, 0x36	; 54
+ 21e:	0e 94 9f 00 	call	0x13e	; 0x13e <serialSend>
+	if(rAvg<rTreshold && bAvg>bTreshold && gAvg>gTreshold)			// blue
+ 222:	09 55       	subi	r16, 0x59	; 89
+ 224:	12 40       	sbci	r17, 0x02	; 2
+ 226:	30 f0       	brcs	.+12     	; 0x234 <avgCompare+0x80>
+ 228:	c9 55       	subi	r28, 0x59	; 89
+ 22a:	d2 40       	sbci	r29, 0x02	; 2
+ 22c:	18 f0       	brcs	.+6      	; 0x234 <avgCompare+0x80>
+		serialSend('7');
+ 22e:	87 e3       	ldi	r24, 0x37	; 55
+ 230:	0e 94 9f 00 	call	0x13e	; 0x13e <serialSend>
+}
+ 234:	df 91       	pop	r29
+ 236:	cf 91       	pop	r28
+ 238:	1f 91       	pop	r17
+ 23a:	0f 91       	pop	r16
+ 23c:	ff 90       	pop	r15
+ 23e:	ef 90       	pop	r14
+ 240:	08 95       	ret
+
+00000242 <checkColour>:
+		
+	_delay_ms(150);
+	
+}
+
+void checkColour(void){
+ 242:	ef 92       	push	r14
+ 244:	ff 92       	push	r15
+ 246:	0f 93       	push	r16
+ 248:	1f 93       	push	r17
+ 24a:	cf 93       	push	r28
+ 24c:	df 93       	push	r29
+ 24e:	a0 e0       	ldi	r26, 0x00	; 0
+ 250:	b0 e0       	ldi	r27, 0x00	; 0
+ 252:	60 e0       	ldi	r22, 0x00	; 0
+ 254:	70 e0       	ldi	r23, 0x00	; 0
+ 256:	40 e0       	ldi	r20, 0x00	; 0
+ 258:	50 e0       	ldi	r21, 0x00	; 0
+ 25a:	20 e0       	ldi	r18, 0x00	; 0
+ 25c:	30 e0       	ldi	r19, 0x00	; 0
+ 25e:	00 e9       	ldi	r16, 0x90	; 144
+ 260:	11 e0       	ldi	r17, 0x01	; 1
+	unsigned int gTotal = 0;
+	
+	
+	for( unsigned int j=0; j<10; j++){				// creating a loop to get 10 values
+
+		PORTB |= (1<<PB3);							// turn on red
+ 262:	2b 9a       	sbi	0x05, 3	; 5
+ 264:	8c e2       	ldi	r24, 0x2C	; 44
+ 266:	91 e0       	ldi	r25, 0x01	; 1
+ 268:	f8 01       	movw	r30, r16
+ 26a:	31 97       	sbiw	r30, 0x01	; 1
+ 26c:	f1 f7       	brne	.-4      	; 0x26a <checkColour+0x28>
+		{
+			// wait 1/10 ms
+			_delay_loop_2(((F_CPU) / 4e3) / 10);
+			__ticks --;
+ 26e:	01 97       	sbiw	r24, 0x01	; 1
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+ 270:	d9 f7       	brne	.-10     	; 0x268 <checkColour+0x26>
+	
+}
+
+unsigned int adcRead(void){								// read ADC value
+
+	ADCSRA |= (1<<ADSC);							// statrt conversion
+ 272:	80 91 7a 00 	lds	r24, 0x007A
+ 276:	80 64       	ori	r24, 0x40	; 64
+ 278:	80 93 7a 00 	sts	0x007A, r24
+	while(ADCSRA & (1<<ADSC));						// wait while convertion finishes
+ 27c:	80 91 7a 00 	lds	r24, 0x007A
+ 280:	86 fd       	sbrc	r24, 6
+ 282:	fc cf       	rjmp	.-8      	; 0x27c <checkColour+0x3a>
+	return ADC;
+ 284:	e0 90 78 00 	lds	r14, 0x0078
+ 288:	f0 90 79 00 	lds	r15, 0x0079
+
+		PORTB |= (1<<PB3);							// turn on red
+		_delay_ms(30);
+		r = adcRead();								// get ADC reading	
+				
+		PORTB &=~(1<<PB3);
+ 28c:	2b 98       	cbi	0x05, 3	; 5
+		PORTB |= (1<<PB4);
+ 28e:	2c 9a       	sbi	0x05, 4	; 5
+ 290:	8c e2       	ldi	r24, 0x2C	; 44
+ 292:	91 e0       	ldi	r25, 0x01	; 1
+ 294:	f8 01       	movw	r30, r16
+ 296:	31 97       	sbiw	r30, 0x01	; 1
+ 298:	f1 f7       	brne	.-4      	; 0x296 <checkColour+0x54>
+		{
+			// wait 1/10 ms
+			_delay_loop_2(((F_CPU) / 4e3) / 10);
+			__ticks --;
+ 29a:	01 97       	sbiw	r24, 0x01	; 1
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+ 29c:	d9 f7       	brne	.-10     	; 0x294 <checkColour+0x52>
+	
+}
+
+unsigned int adcRead(void){								// read ADC value
+
+	ADCSRA |= (1<<ADSC);							// statrt conversion
+ 29e:	80 91 7a 00 	lds	r24, 0x007A
+ 2a2:	80 64       	ori	r24, 0x40	; 64
+ 2a4:	80 93 7a 00 	sts	0x007A, r24
+	while(ADCSRA & (1<<ADSC));						// wait while convertion finishes
+ 2a8:	80 91 7a 00 	lds	r24, 0x007A
+ 2ac:	86 fd       	sbrc	r24, 6
+ 2ae:	fc cf       	rjmp	.-8      	; 0x2a8 <checkColour+0x66>
+	return ADC;
+ 2b0:	c0 91 78 00 	lds	r28, 0x0078
+ 2b4:	d0 91 79 00 	lds	r29, 0x0079
+		PORTB &=~(1<<PB3);
+		PORTB |= (1<<PB4);
+		_delay_ms(30);								// turn on blue
+		b = adcRead();								// get ADC reading	
+				
+		PORTB &=~(1<<PB4);
+ 2b8:	2c 98       	cbi	0x05, 4	; 5
+		PORTB |= (1<<PB5);							// turn on green
+ 2ba:	2d 9a       	sbi	0x05, 5	; 5
+ 2bc:	8c e2       	ldi	r24, 0x2C	; 44
+ 2be:	91 e0       	ldi	r25, 0x01	; 1
+ 2c0:	f8 01       	movw	r30, r16
+ 2c2:	31 97       	sbiw	r30, 0x01	; 1
+ 2c4:	f1 f7       	brne	.-4      	; 0x2c2 <checkColour+0x80>
+		{
+			// wait 1/10 ms
+			_delay_loop_2(((F_CPU) / 4e3) / 10);
+			__ticks --;
+ 2c6:	01 97       	sbiw	r24, 0x01	; 1
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+ 2c8:	d9 f7       	brne	.-10     	; 0x2c0 <checkColour+0x7e>
+	
+}
+
+unsigned int adcRead(void){								// read ADC value
+
+	ADCSRA |= (1<<ADSC);							// statrt conversion
+ 2ca:	80 91 7a 00 	lds	r24, 0x007A
+ 2ce:	80 64       	ori	r24, 0x40	; 64
+ 2d0:	80 93 7a 00 	sts	0x007A, r24
+	while(ADCSRA & (1<<ADSC));						// wait while convertion finishes
+ 2d4:	80 91 7a 00 	lds	r24, 0x007A
+ 2d8:	86 fd       	sbrc	r24, 6
+ 2da:	fc cf       	rjmp	.-8      	; 0x2d4 <checkColour+0x92>
+	return ADC;
+ 2dc:	80 91 78 00 	lds	r24, 0x0078
+ 2e0:	90 91 79 00 	lds	r25, 0x0079
+		PORTB &=~(1<<PB4);
+		PORTB |= (1<<PB5);							// turn on green
+		_delay_ms(30);
+		g = adcRead();								// get ADC reading	
+				
+		PORTB &=~(1<<PB5);
+ 2e4:	2d 98       	cbi	0x05, 5	; 5
+		
+		rTotal += r;								// incrementing
+ 2e6:	ae 0d       	add	r26, r14
+ 2e8:	bf 1d       	adc	r27, r15
+		gTotal += g;
+ 2ea:	48 0f       	add	r20, r24
+ 2ec:	59 1f       	adc	r21, r25
+		bTotal += b;
+ 2ee:	6c 0f       	add	r22, r28
+ 2f0:	7d 1f       	adc	r23, r29
+	unsigned int rTotal = 0;
+	unsigned int bTotal = 0;
+	unsigned int gTotal = 0;
+	
+	
+	for( unsigned int j=0; j<10; j++){				// creating a loop to get 10 values
+ 2f2:	2f 5f       	subi	r18, 0xFF	; 255
+ 2f4:	3f 4f       	sbci	r19, 0xFF	; 255
+ 2f6:	2a 30       	cpi	r18, 0x0A	; 10
+ 2f8:	31 05       	cpc	r19, r1
+ 2fa:	09 f0       	breq	.+2      	; 0x2fe <checkColour+0xbc>
+ 2fc:	b2 cf       	rjmp	.-156    	; 0x262 <checkColour+0x20>
+		rTotal += r;								// incrementing
+		gTotal += g;
+		bTotal += b;
+	}
+	
+	avgCompare(rTotal,bTotal,gTotal);			// average calculation
+ 2fe:	cd 01       	movw	r24, r26
+ 300:	0e 94 da 00 	call	0x1b4	; 0x1b4 <avgCompare>
+	
+}
+ 304:	df 91       	pop	r29
+ 306:	cf 91       	pop	r28
+ 308:	1f 91       	pop	r17
+ 30a:	0f 91       	pop	r16
+ 30c:	ff 90       	pop	r15
+ 30e:	ef 90       	pop	r14
+ 310:	08 95       	ret
+
+00000312 <main>:
+	else  {
+		count = TCNT2;
+	}
+}
+
+int main(void){
+ 312:	cf 93       	push	r28
+ 314:	df 93       	push	r29
+
+	init();
+ 316:	0e 94 62 00 	call	0xc4	; 0xc4 <init>
+	DDRD |= 0<<PD2|1<<PD3; 
+}
+
+void pwmInit(void){ // PWM initialization
+
+	TCCR0A = (1<< COM0A1) | (1<<COM0B1) | (1<<WGM01) | (1<<WGM00); // timer0 
+ 31a:	83 ea       	ldi	r24, 0xA3	; 163
+ 31c:	84 bd       	out	0x24, r24	; 36
+	TCCR0B = (1<<CS00); //no prescaler
+ 31e:	91 e0       	ldi	r25, 0x01	; 1
+ 320:	95 bd       	out	0x25, r25	; 37
+		
+	TCCR1A = (1<< COM1A1) | (1<<COM1B1) | (1<<WGM12) | (1<<WGM10); // timer1
+ 322:	89 ea       	ldi	r24, 0xA9	; 169
+ 324:	80 93 80 00 	sts	0x0080, r24
+	TCCR1B = (1<<CS10); //no prescaler
+ 328:	90 93 81 00 	sts	0x0081, r25
+	sei();
+
+}
+void usartInit(void){ 								// USART initialization
+
+	UCSR0B = (1<<TXEN0) | (1<<RXEN0); 				// configure transmitter and reciever
+ 32c:	88 e1       	ldi	r24, 0x18	; 24
+ 32e:	80 93 c1 00 	sts	0x00C1, r24
+	UCSR0C |= (1<<UCSZ01)|(1<<UCSZ00);	 			// Select UCSRC0, Select transmit/receive msg bit-size
+ 332:	80 91 c2 00 	lds	r24, 0x00C2
+ 336:	86 60       	ori	r24, 0x06	; 6
+ 338:	80 93 c2 00 	sts	0x00C2, r24
+	
+	UBRR0L = 103; 									//set baudrate
+ 33c:	87 e6       	ldi	r24, 0x67	; 103
+ 33e:	80 93 c4 00 	sts	0x00C4, r24
+int main(void){
+
+	init();
+	pwmInit();
+	usartInit();
+	timerInit();
+ 342:	0e 94 74 00 	call	0xe8	; 0xe8 <timerInit>
+
+}
+
+void adcInit(void){										// Adc initialization
+
+    ADMUX = (1<<REFS0)|(1<<MUX0);					// use AVCC and and A as input to adc 
+ 346:	81 e4       	ldi	r24, 0x41	; 65
+ 348:	80 93 7c 00 	sts	0x007C, r24
+	ADCSRA = (1<<ADEN)|(1<<ADPS1)|(1<<ADPS0); 	// ADC presclaer 128
+ 34c:	83 e8       	ldi	r24, 0x83	; 131
+ 34e:	80 93 7a 00 	sts	0x007A, r24
+
+}
+	
+void move(unsigned int a,unsigned int b,unsigned int c,unsigned int d){
+
+	OCR0A = a;
+ 352:	8f ef       	ldi	r24, 0xFF	; 255
+ 354:	87 bd       	out	0x27, r24	; 39
+	OCR0B = b;
+ 356:	18 bc       	out	0x28, r1	; 40
+	OCR1A = c;
+ 358:	86 ee       	ldi	r24, 0xE6	; 230
+ 35a:	90 e0       	ldi	r25, 0x00	; 0
+ 35c:	90 93 89 00 	sts	0x0089, r25
+ 360:	80 93 88 00 	sts	0x0088, r24
+	OCR1B = d;
+ 364:	10 92 8b 00 	sts	0x008B, r1
+ 368:	10 92 8a 00 	sts	0x008A, r1
+ 36c:	c0 e0       	ldi	r28, 0x00	; 0
+ 36e:	d0 e0       	ldi	r29, 0x00	; 0
+	//serialSend('f');
+	  
+	move (255,0,230,0);// forward
+	
+	for(unsigned int i = 0; i<5; i++){
+		detectObstacle();
+ 370:	0e 94 ab 00 	call	0x156	; 0x156 <detectObstacle>
+		checkColour();
+ 374:	0e 94 21 01 	call	0x242	; 0x242 <checkColour>
+	
+	//serialSend('f');
+	  
+	move (255,0,230,0);// forward
+	
+	for(unsigned int i = 0; i<5; i++){
+ 378:	21 96       	adiw	r28, 0x01	; 1
+ 37a:	c5 30       	cpi	r28, 0x05	; 5
+ 37c:	d1 05       	cpc	r29, r1
+ 37e:	c1 f7       	brne	.-16     	; 0x370 <main+0x5e>
+
+}
+	
+void move(unsigned int a,unsigned int b,unsigned int c,unsigned int d){
+
+	OCR0A = a;
+ 380:	17 bc       	out	0x27, r1	; 39
+	OCR0B = b;
+ 382:	8f ef       	ldi	r24, 0xFF	; 255
+ 384:	88 bd       	out	0x28, r24	; 40
+	OCR1A = c;
+ 386:	8f ef       	ldi	r24, 0xFF	; 255
+ 388:	90 e0       	ldi	r25, 0x00	; 0
+ 38a:	90 93 89 00 	sts	0x0089, r25
+ 38e:	80 93 88 00 	sts	0x0088, r24
+	OCR1B = d;
+ 392:	10 92 8b 00 	sts	0x008B, r1
+ 396:	10 92 8a 00 	sts	0x008A, r1
+ 39a:	8c e0       	ldi	r24, 0x0C	; 12
+ 39c:	97 e1       	ldi	r25, 0x17	; 23
+ 39e:	20 e9       	ldi	r18, 0x90	; 144
+ 3a0:	31 e0       	ldi	r19, 0x01	; 1
+ 3a2:	f9 01       	movw	r30, r18
+ 3a4:	31 97       	sbiw	r30, 0x01	; 1
+ 3a6:	f1 f7       	brne	.-4      	; 0x3a4 <main+0x92>
+		{
+			// wait 1/10 ms
+			_delay_loop_2(((F_CPU) / 4e3) / 10);
+			__ticks --;
+ 3a8:	01 97       	sbiw	r24, 0x01	; 1
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+ 3aa:	d9 f7       	brne	.-10     	; 0x3a2 <main+0x90>
+
+}
+	
+void move(unsigned int a,unsigned int b,unsigned int c,unsigned int d){
+
+	OCR0A = a;
+ 3ac:	8f ef       	ldi	r24, 0xFF	; 255
+ 3ae:	87 bd       	out	0x27, r24	; 39
+	OCR0B = b;
+ 3b0:	18 bc       	out	0x28, r1	; 40
+	OCR1A = c;
+ 3b2:	86 ee       	ldi	r24, 0xE6	; 230
+ 3b4:	90 e0       	ldi	r25, 0x00	; 0
+ 3b6:	90 93 89 00 	sts	0x0089, r25
+ 3ba:	80 93 88 00 	sts	0x0088, r24
+	OCR1B = d;
+ 3be:	10 92 8b 00 	sts	0x008B, r1
+ 3c2:	10 92 8a 00 	sts	0x008A, r1
+ 3c6:	c0 e0       	ldi	r28, 0x00	; 0
+ 3c8:	d0 e0       	ldi	r29, 0x00	; 0
+	_delay_ms(590);
+	
+	move (255,0,230,0);// forward
+	
+	for(unsigned int i = 0; i<4; i++){
+		detectObstacle();
+ 3ca:	0e 94 ab 00 	call	0x156	; 0x156 <detectObstacle>
+		checkColour();
+ 3ce:	0e 94 21 01 	call	0x242	; 0x242 <checkColour>
+	move (0,255,255,0);// turn right
+	_delay_ms(590);
+	
+	move (255,0,230,0);// forward
+	
+	for(unsigned int i = 0; i<4; i++){
+ 3d2:	21 96       	adiw	r28, 0x01	; 1
+ 3d4:	c4 30       	cpi	r28, 0x04	; 4
+ 3d6:	d1 05       	cpc	r29, r1
+ 3d8:	c1 f7       	brne	.-16     	; 0x3ca <main+0xb8>
+
+}
+	
+void move(unsigned int a,unsigned int b,unsigned int c,unsigned int d){
+
+	OCR0A = a;
+ 3da:	8f ef       	ldi	r24, 0xFF	; 255
+ 3dc:	87 bd       	out	0x27, r24	; 39
+	OCR0B = b;
+ 3de:	18 bc       	out	0x28, r1	; 40
+	OCR1A = c;
+ 3e0:	10 92 89 00 	sts	0x0089, r1
+ 3e4:	10 92 88 00 	sts	0x0088, r1
+	OCR1B = d;
+ 3e8:	8f ef       	ldi	r24, 0xFF	; 255
+ 3ea:	90 e0       	ldi	r25, 0x00	; 0
+ 3ec:	90 93 8b 00 	sts	0x008B, r25
+ 3f0:	80 93 8a 00 	sts	0x008A, r24
+ 3f4:	8e e3       	ldi	r24, 0x3E	; 62
+ 3f6:	97 e1       	ldi	r25, 0x17	; 23
+ 3f8:	20 e9       	ldi	r18, 0x90	; 144
+ 3fa:	31 e0       	ldi	r19, 0x01	; 1
+ 3fc:	f9 01       	movw	r30, r18
+ 3fe:	31 97       	sbiw	r30, 0x01	; 1
+ 400:	f1 f7       	brne	.-4      	; 0x3fe <main+0xec>
+		{
+			// wait 1/10 ms
+			_delay_loop_2(((F_CPU) / 4e3) / 10);
+			__ticks --;
+ 402:	01 97       	sbiw	r24, 0x01	; 1
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+ 404:	d9 f7       	brne	.-10     	; 0x3fc <main+0xea>
+
+}
+	
+void move(unsigned int a,unsigned int b,unsigned int c,unsigned int d){
+
+	OCR0A = a;
+ 406:	8f ef       	ldi	r24, 0xFF	; 255
+ 408:	87 bd       	out	0x27, r24	; 39
+	OCR0B = b;
+ 40a:	18 bc       	out	0x28, r1	; 40
+	OCR1A = c;
+ 40c:	86 ee       	ldi	r24, 0xE6	; 230
+ 40e:	90 e0       	ldi	r25, 0x00	; 0
+ 410:	90 93 89 00 	sts	0x0089, r25
+ 414:	80 93 88 00 	sts	0x0088, r24
+	OCR1B = d;
+ 418:	10 92 8b 00 	sts	0x008B, r1
+ 41c:	10 92 8a 00 	sts	0x008A, r1
+ 420:	c0 e0       	ldi	r28, 0x00	; 0
+ 422:	d0 e0       	ldi	r29, 0x00	; 0
+	move (255,0,0,255);// turn left
+	_delay_ms(595);
+	move (255,0,230,0);// forward
+	
+	for(unsigned int i = 0; i<4; i++){
+		detectObstacle();
+ 424:	0e 94 ab 00 	call	0x156	; 0x156 <detectObstacle>
+		checkColour();
+ 428:	0e 94 21 01 	call	0x242	; 0x242 <checkColour>
+	}
+	move (255,0,0,255);// turn left
+	_delay_ms(595);
+	move (255,0,230,0);// forward
+	
+	for(unsigned int i = 0; i<4; i++){
+ 42c:	21 96       	adiw	r28, 0x01	; 1
+ 42e:	c4 30       	cpi	r28, 0x04	; 4
+ 430:	d1 05       	cpc	r29, r1
+ 432:	c1 f7       	brne	.-16     	; 0x424 <main+0x112>
+
+}
+	
+void move(unsigned int a,unsigned int b,unsigned int c,unsigned int d){
+
+	OCR0A = a;
+ 434:	8f ef       	ldi	r24, 0xFF	; 255
+ 436:	87 bd       	out	0x27, r24	; 39
+	OCR0B = b;
+ 438:	18 bc       	out	0x28, r1	; 40
+	OCR1A = c;
+ 43a:	10 92 89 00 	sts	0x0089, r1
+ 43e:	10 92 88 00 	sts	0x0088, r1
+	OCR1B = d;
+ 442:	8f ef       	ldi	r24, 0xFF	; 255
+ 444:	90 e0       	ldi	r25, 0x00	; 0
+ 446:	90 93 8b 00 	sts	0x008B, r25
+ 44a:	80 93 8a 00 	sts	0x008A, r24
+ 44e:	8e e3       	ldi	r24, 0x3E	; 62
+ 450:	97 e1       	ldi	r25, 0x17	; 23
+ 452:	20 e9       	ldi	r18, 0x90	; 144
+ 454:	31 e0       	ldi	r19, 0x01	; 1
+ 456:	f9 01       	movw	r30, r18
+ 458:	31 97       	sbiw	r30, 0x01	; 1
+ 45a:	f1 f7       	brne	.-4      	; 0x458 <main+0x146>
+		{
+			// wait 1/10 ms
+			_delay_loop_2(((F_CPU) / 4e3) / 10);
+			__ticks --;
+ 45c:	01 97       	sbiw	r24, 0x01	; 1
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+ 45e:	d9 f7       	brne	.-10     	; 0x456 <main+0x144>
+
+}
+	
+void move(unsigned int a,unsigned int b,unsigned int c,unsigned int d){
+
+	OCR0A = a;
+ 460:	8f ef       	ldi	r24, 0xFF	; 255
+ 462:	87 bd       	out	0x27, r24	; 39
+	OCR0B = b;
+ 464:	18 bc       	out	0x28, r1	; 40
+	OCR1A = c;
+ 466:	86 ee       	ldi	r24, 0xE6	; 230
+ 468:	90 e0       	ldi	r25, 0x00	; 0
+ 46a:	90 93 89 00 	sts	0x0089, r25
+ 46e:	80 93 88 00 	sts	0x0088, r24
+	OCR1B = d;
+ 472:	10 92 8b 00 	sts	0x008B, r1
+ 476:	10 92 8a 00 	sts	0x008A, r1
+ 47a:	c0 e0       	ldi	r28, 0x00	; 0
+ 47c:	d0 e0       	ldi	r29, 0x00	; 0
+	_delay_ms(595);
+	
+	move (255,0,230,0);// forward
+	
+	for(unsigned int i = 0; i<9; i++){
+		detectObstacle();
+ 47e:	0e 94 ab 00 	call	0x156	; 0x156 <detectObstacle>
+		checkColour();
+ 482:	0e 94 21 01 	call	0x242	; 0x242 <checkColour>
+	move (255,0,0,255);// turn left
+	_delay_ms(595);
+	
+	move (255,0,230,0);// forward
+	
+	for(unsigned int i = 0; i<9; i++){
+ 486:	21 96       	adiw	r28, 0x01	; 1
+ 488:	c9 30       	cpi	r28, 0x09	; 9
+ 48a:	d1 05       	cpc	r29, r1
+ 48c:	c1 f7       	brne	.-16     	; 0x47e <main+0x16c>
+
+}
+	
+void move(unsigned int a,unsigned int b,unsigned int c,unsigned int d){
+
+	OCR0A = a;
+ 48e:	8f ef       	ldi	r24, 0xFF	; 255
+ 490:	87 bd       	out	0x27, r24	; 39
+	OCR0B = b;
+ 492:	18 bc       	out	0x28, r1	; 40
+	OCR1A = c;
+ 494:	10 92 89 00 	sts	0x0089, r1
+ 498:	10 92 88 00 	sts	0x0088, r1
+	OCR1B = d;
+ 49c:	8f ef       	ldi	r24, 0xFF	; 255
+ 49e:	90 e0       	ldi	r25, 0x00	; 0
+ 4a0:	90 93 8b 00 	sts	0x008B, r25
+ 4a4:	80 93 8a 00 	sts	0x008A, r24
+ 4a8:	8e e3       	ldi	r24, 0x3E	; 62
+ 4aa:	97 e1       	ldi	r25, 0x17	; 23
+ 4ac:	20 e9       	ldi	r18, 0x90	; 144
+ 4ae:	31 e0       	ldi	r19, 0x01	; 1
+ 4b0:	f9 01       	movw	r30, r18
+ 4b2:	31 97       	sbiw	r30, 0x01	; 1
+ 4b4:	f1 f7       	brne	.-4      	; 0x4b2 <main+0x1a0>
+		{
+			// wait 1/10 ms
+			_delay_loop_2(((F_CPU) / 4e3) / 10);
+			__ticks --;
+ 4b6:	01 97       	sbiw	r24, 0x01	; 1
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+ 4b8:	d9 f7       	brne	.-10     	; 0x4b0 <main+0x19e>
+
+}
+	
+void move(unsigned int a,unsigned int b,unsigned int c,unsigned int d){
+
+	OCR0A = a;
+ 4ba:	8f ef       	ldi	r24, 0xFF	; 255
+ 4bc:	87 bd       	out	0x27, r24	; 39
+	OCR0B = b;
+ 4be:	18 bc       	out	0x28, r1	; 40
+	OCR1A = c;
+ 4c0:	86 ee       	ldi	r24, 0xE6	; 230
+ 4c2:	90 e0       	ldi	r25, 0x00	; 0
+ 4c4:	90 93 89 00 	sts	0x0089, r25
+ 4c8:	80 93 88 00 	sts	0x0088, r24
+	OCR1B = d;
+ 4cc:	10 92 8b 00 	sts	0x008B, r1
+ 4d0:	10 92 8a 00 	sts	0x008A, r1
+ 4d4:	c0 e0       	ldi	r28, 0x00	; 0
+ 4d6:	d0 e0       	ldi	r29, 0x00	; 0
+	move (255,0,0,255);// turn left
+	_delay_ms(595);
+	move (255,0,230,0);// forward
+	
+	for(unsigned int i = 0; i<4; i++){
+		detectObstacle();
+ 4d8:	0e 94 ab 00 	call	0x156	; 0x156 <detectObstacle>
+		checkColour();
+ 4dc:	0e 94 21 01 	call	0x242	; 0x242 <checkColour>
+	}	
+	move (255,0,0,255);// turn left
+	_delay_ms(595);
+	move (255,0,230,0);// forward
+	
+	for(unsigned int i = 0; i<4; i++){
+ 4e0:	21 96       	adiw	r28, 0x01	; 1
+ 4e2:	c4 30       	cpi	r28, 0x04	; 4
+ 4e4:	d1 05       	cpc	r29, r1
+ 4e6:	c1 f7       	brne	.-16     	; 0x4d8 <main+0x1c6>
+
+}
+	
+void move(unsigned int a,unsigned int b,unsigned int c,unsigned int d){
+
+	OCR0A = a;
+ 4e8:	8f ef       	ldi	r24, 0xFF	; 255
+ 4ea:	87 bd       	out	0x27, r24	; 39
+	OCR0B = b;
+ 4ec:	18 bc       	out	0x28, r1	; 40
+	OCR1A = c;
+ 4ee:	10 92 89 00 	sts	0x0089, r1
+ 4f2:	10 92 88 00 	sts	0x0088, r1
+	OCR1B = d;
+ 4f6:	8f ef       	ldi	r24, 0xFF	; 255
+ 4f8:	90 e0       	ldi	r25, 0x00	; 0
+ 4fa:	90 93 8b 00 	sts	0x008B, r25
+ 4fe:	80 93 8a 00 	sts	0x008A, r24
+ 502:	8e e3       	ldi	r24, 0x3E	; 62
+ 504:	97 e1       	ldi	r25, 0x17	; 23
+ 506:	20 e9       	ldi	r18, 0x90	; 144
+ 508:	31 e0       	ldi	r19, 0x01	; 1
+ 50a:	f9 01       	movw	r30, r18
+ 50c:	31 97       	sbiw	r30, 0x01	; 1
+ 50e:	f1 f7       	brne	.-4      	; 0x50c <main+0x1fa>
+		{
+			// wait 1/10 ms
+			_delay_loop_2(((F_CPU) / 4e3) / 10);
+			__ticks --;
+ 510:	01 97       	sbiw	r24, 0x01	; 1
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+ 512:	d9 f7       	brne	.-10     	; 0x50a <main+0x1f8>
+
+}
+	
+void move(unsigned int a,unsigned int b,unsigned int c,unsigned int d){
+
+	OCR0A = a;
+ 514:	8f ef       	ldi	r24, 0xFF	; 255
+ 516:	87 bd       	out	0x27, r24	; 39
+	OCR0B = b;
+ 518:	18 bc       	out	0x28, r1	; 40
+	OCR1A = c;
+ 51a:	86 ee       	ldi	r24, 0xE6	; 230
+ 51c:	90 e0       	ldi	r25, 0x00	; 0
+ 51e:	90 93 89 00 	sts	0x0089, r25
+ 522:	80 93 88 00 	sts	0x0088, r24
+	OCR1B = d;
+ 526:	10 92 8b 00 	sts	0x008B, r1
+ 52a:	10 92 8a 00 	sts	0x008A, r1
+ 52e:	c0 e0       	ldi	r28, 0x00	; 0
+ 530:	d0 e0       	ldi	r29, 0x00	; 0
+	_delay_ms(595);
+	
+	move (255,0,230,0);// forward
+	
+	for(unsigned int i = 0; i<4; i++){
+		detectObstacle();
+ 532:	0e 94 ab 00 	call	0x156	; 0x156 <detectObstacle>
+		checkColour();
+ 536:	0e 94 21 01 	call	0x242	; 0x242 <checkColour>
+	move (255,0,0,255);// turn left
+	_delay_ms(595);
+	
+	move (255,0,230,0);// forward
+	
+	for(unsigned int i = 0; i<4; i++){
+ 53a:	21 96       	adiw	r28, 0x01	; 1
+ 53c:	c4 30       	cpi	r28, 0x04	; 4
+ 53e:	d1 05       	cpc	r29, r1
+ 540:	c1 f7       	brne	.-16     	; 0x532 <main+0x220>
+
+}
+	
+void move(unsigned int a,unsigned int b,unsigned int c,unsigned int d){
+
+	OCR0A = a;
+ 542:	17 bc       	out	0x27, r1	; 39
+	OCR0B = b;
+ 544:	8f ef       	ldi	r24, 0xFF	; 255
+ 546:	88 bd       	out	0x28, r24	; 40
+	OCR1A = c;
+ 548:	8f ef       	ldi	r24, 0xFF	; 255
+ 54a:	90 e0       	ldi	r25, 0x00	; 0
+ 54c:	90 93 89 00 	sts	0x0089, r25
+ 550:	80 93 88 00 	sts	0x0088, r24
+	OCR1B = d;
+ 554:	10 92 8b 00 	sts	0x008B, r1
+ 558:	10 92 8a 00 	sts	0x008A, r1
+ 55c:	8c e0       	ldi	r24, 0x0C	; 12
+ 55e:	97 e1       	ldi	r25, 0x17	; 23
+ 560:	20 e9       	ldi	r18, 0x90	; 144
+ 562:	31 e0       	ldi	r19, 0x01	; 1
+ 564:	f9 01       	movw	r30, r18
+ 566:	31 97       	sbiw	r30, 0x01	; 1
+ 568:	f1 f7       	brne	.-4      	; 0x566 <main+0x254>
+		{
+			// wait 1/10 ms
+			_delay_loop_2(((F_CPU) / 4e3) / 10);
+			__ticks --;
+ 56a:	01 97       	sbiw	r24, 0x01	; 1
+		__ticks = 1;
+	else if (__tmp > 65535)
+	{
+		//	__ticks = requested delay in 1/10 ms
+		__ticks = (uint16_t) (__ms * 10.0);
+		while(__ticks)
+ 56c:	d9 f7       	brne	.-10     	; 0x564 <main+0x252>
+
+}
+	
+void move(unsigned int a,unsigned int b,unsigned int c,unsigned int d){
+
+	OCR0A = a;
+ 56e:	8f ef       	ldi	r24, 0xFF	; 255
+ 570:	87 bd       	out	0x27, r24	; 39
+	OCR0B = b;
+ 572:	18 bc       	out	0x28, r1	; 40
+	OCR1A = c;
+ 574:	86 ee       	ldi	r24, 0xE6	; 230
+ 576:	90 e0       	ldi	r25, 0x00	; 0
+ 578:	90 93 89 00 	sts	0x0089, r25
+ 57c:	80 93 88 00 	sts	0x0088, r24
+	OCR1B = d;
+ 580:	10 92 8b 00 	sts	0x008B, r1
+ 584:	10 92 8a 00 	sts	0x008A, r1
+ 588:	c0 e0       	ldi	r28, 0x00	; 0
+ 58a:	d0 e0       	ldi	r29, 0x00	; 0
+	_delay_ms(590);
+	
+	move (255,0,230,0);// forward
+	
+	for(unsigned int i = 0; i<4; i++){
+		detectObstacle();
+ 58c:	0e 94 ab 00 	call	0x156	; 0x156 <detectObstacle>
+		checkColour();
+ 590:	0e 94 21 01 	call	0x242	; 0x242 <checkColour>
+	move (0,255,255,0);// turn right
+	_delay_ms(590);
+	
+	move (255,0,230,0);// forward
+	
+	for(unsigned int i = 0; i<4; i++){
+ 594:	21 96       	adiw	r28, 0x01	; 1
+ 596:	c4 30       	cpi	r28, 0x04	; 4
+ 598:	d1 05       	cpc	r29, r1
+ 59a:	c1 f7       	brne	.-16     	; 0x58c <main+0x27a>
+
+}
+	
+void move(unsigned int a,unsigned int b,unsigned int c,unsigned int d){
+
+	OCR0A = a;
+ 59c:	17 bc       	out	0x27, r1	; 39
+	OCR0B = b;
+ 59e:	18 bc       	out	0x28, r1	; 40
+	OCR1A = c;
+ 5a0:	10 92 89 00 	sts	0x0089, r1
+ 5a4:	10 92 88 00 	sts	0x0088, r1
+	OCR1B = d;
+ 5a8:	10 92 8b 00 	sts	0x008B, r1
+ 5ac:	10 92 8a 00 	sts	0x008A, r1
+		detectObstacle();
+		checkColour();
+	}	
+		
+	move(0,0,0,0);  // stop
+}
+ 5b0:	80 e0       	ldi	r24, 0x00	; 0
+ 5b2:	90 e0       	ldi	r25, 0x00	; 0
+ 5b4:	df 91       	pop	r29
+ 5b6:	cf 91       	pop	r28
+ 5b8:	08 95       	ret
+
+000005ba <__udivmodhi4>:
+ 5ba:	aa 1b       	sub	r26, r26
+ 5bc:	bb 1b       	sub	r27, r27
+ 5be:	51 e1       	ldi	r21, 0x11	; 17
+ 5c0:	07 c0       	rjmp	.+14     	; 0x5d0 <__udivmodhi4_ep>
+
+000005c2 <__udivmodhi4_loop>:
+ 5c2:	aa 1f       	adc	r26, r26
+ 5c4:	bb 1f       	adc	r27, r27
+ 5c6:	a6 17       	cp	r26, r22
+ 5c8:	b7 07       	cpc	r27, r23
+ 5ca:	10 f0       	brcs	.+4      	; 0x5d0 <__udivmodhi4_ep>
+ 5cc:	a6 1b       	sub	r26, r22
+ 5ce:	b7 0b       	sbc	r27, r23
+
+000005d0 <__udivmodhi4_ep>:
+ 5d0:	88 1f       	adc	r24, r24
+ 5d2:	99 1f       	adc	r25, r25
+ 5d4:	5a 95       	dec	r21
+ 5d6:	a9 f7       	brne	.-22     	; 0x5c2 <__udivmodhi4_loop>
+ 5d8:	80 95       	com	r24
+ 5da:	90 95       	com	r25
+ 5dc:	bc 01       	movw	r22, r24
+ 5de:	cd 01       	movw	r24, r26
+ 5e0:	08 95       	ret
+
+000005e2 <_exit>:
+ 5e2:	f8 94       	cli
+
+000005e4 <__stop_program>:
+ 5e4:	ff cf       	rjmp	.-2      	; 0x5e4 <__stop_program>
